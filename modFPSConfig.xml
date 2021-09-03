@@ -5,25 +5,41 @@
 			<Preset id="0" displayName="Default">
 				<Entry varId="Enable" value="1" />
 				<Entry varId="Enable_in_combat" value="1" />
+				<Entry varId="Enable_in_DialogOrCutscene" value="1" />
+				<Entry varId="Enable_in_NonGameplayScene" value="1" />
+				<Entry varId="Enable_in_NonGameplayCutscene" value="1" />
+				<Entry varId="Enable_in_UsingBoat" value="1" />
+				<Entry varId="Enable_in_Swiming" value="1" />
 				<Entry varId="Hide_geralt" value="1" />
-				<Entry varId="Camera_offset_width" value="3.55" />
-				<Entry varId="Camera_offset_height" value="0.45" />
-				<Entry varId="Camera_offset_width_INCOMBAT" value="3.75" />
-				<Entry varId="Camera_offset_height_INCOMBAT" value="0.45" />
-				<Entry varId="Camera_offset_width_WITCHERSENSE" value="4.4" />
-				<Entry varId="Camera_offset_height_WITCHERSENSE" value="0.45" />
+				<Entry varId="Hide_geralt_in_witchersense" value="1" />
+				<Entry varId="Camera_offset_width" value="3.40" />
+				<Entry varId="Camera_offset_height" value="0.35" />
+				<Entry varId="Camera_offset_width_INTERIOR" value="2.10" />
+				<Entry varId="Camera_offset_width_INCOMBAT" value="3.96" />
+				<Entry varId="Camera_offset_height_INCOMBAT" value="0.38" />
+				<Entry varId="Camera_offset_width_WITCHERSENSE" value=".70" />
+				<Entry varId="Camera_offset_height_WITCHERSENSE" value="0.60" />
 			</Preset>
 		</PresetsArray>
 		<VisibleVars>
-			<Var id="Enable" displayName="FPS_MODE_Enable" displayType="TOGGLE"/>
-			<Var id="Enable_in_combat" displayName="Enable_in_combat" displayType="TOGGLE"/>
+			<Var id="Enable" displayName="FPS_MODE_Enable" displayType="TOGGLE"/>		
 			<Var id="Hide_geralt" displayName="Hide_geralt" displayType="TOGGLE"/>
-			<Var id="Camera_offset_width" displayName="Camera_offset_width" displayType="SLIDER;0.1;7;200"/>
-			<Var id="Camera_offset_height" displayName="Camera_offset_height" displayType="SLIDER;0.1;3;200"/>
-			<Var id="Camera_offset_width_INCOMBAT" displayName="Camera_offset_width_INCOMBAT" displayType="SLIDER;0.1;7;200"/>
-			<Var id="Camera_offset_height_INCOMBAT" displayName="Camera_offset_height_INCOMBAT" displayType="SLIDER;0.1;3;200"/>
-			<Var id="Camera_offset_width_WITCHERSENSE" displayName="Camera_offset_width_WITCHERSENSE" displayType="SLIDER;0.1;7;200"/>
-			<Var id="Camera_offset_height_WITCHERSENSE" displayName="Camera_offset_height_WITCHERSENSE" displayType="SLIDER;0.1;3;200"/>
+			<Var id="Hide_geralt_in_witchersense" displayName="Hide_geralt_in_witchersense" displayType="TOGGLE"/>
+	
+			<Var id="Camera_offset_width" displayName="Camera_offset_width" displayType="SLIDER;0.0;7;200"/>
+			<Var id="Camera_offset_height" displayName="Camera_offset_height" displayType="SLIDER;0.0;3;200"/>
+			<Var id="Camera_offset_width_INTERIOR" displayName="Camera_offset_width_INTERIOR" displayType="SLIDER;0.0;7;200"/>
+			<Var id="Camera_offset_width_INCOMBAT" displayName="Camera_offset_width_INCOMBAT" displayType="SLIDER;0.0;7;200"/>
+			<Var id="Camera_offset_height_INCOMBAT" displayName="Camera_offset_height_INCOMBAT" displayType="SLIDER;0.0;3;200"/>
+			<Var id="Camera_offset_width_WITCHERSENSE" displayName="Camera_offset_width_WITCHERSENSE" displayType="SLIDER;0.0;7;200"/>
+			<Var id="Camera_offset_height_WITCHERSENSE" displayName="Camera_offset_height_WITCHERSENSE" displayType="SLIDER;0.0;3;200"/>
+			
+			<Var id="Enable_in_combat" displayName="Enable_in_combat" displayType="TOGGLE"/>	
+			<Var id="Enable_in_DialogOrCutscene" displayName="Enable_in_DialogOrCutscene" displayType="TOGGLE"/>			
+			<Var id="Enable_in_NonGameplayScene" displayName="Enable_in_NonGameplayScene" displayType="TOGGLE"/>
+			<Var id="Enable_in_NonGameplayCutscene" displayName="Enable_in_NonGameplayCutscene" displayType="TOGGLE"/>
+			<Var id="Enable_in_UsingBoat" displayName="Enable_in_UsingBoat" displayType="TOGGLE"/>
+			<Var id="Enable_in_Swiming" displayName="Enable_in_Swiming" displayType="TOGGLE"/>
 		</VisibleVars>
 	</Group>
 </UserConfig>
