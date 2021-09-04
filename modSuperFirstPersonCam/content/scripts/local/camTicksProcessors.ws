@@ -55,7 +55,7 @@
 				|| (!FP_IsEnabled_NonGameplayScene() && theGame.IsCurrentlyPlayingNonGameplayScene())
 				|| (!FP_IsEnabled_UsingBoat()  && thePlayer.IsUsingBoat())
 				|| (!FP_IsEnabled_Combat() && thePlayer.IsInCombat())
-				|| (!FP_IsEnabled_UsingHorse() && (thePlayer.IsUsingHorse() || IsInsideHorseInteraction()))
+				|| (!FP_IsEnabled_UsingHorse() && (thePlayer.IsUsingHorse()))
 				)
 				
 			{
@@ -80,8 +80,8 @@
 				}
 				
 
-				moveData.pivotPositionController.SetDesiredPosition(GetWorldPosition(), 0.0 );
-				moveData.pivotRotationController.SetDesiredHeading( GetHeading(), 2.8 );				
+				moveData.pivotPositionController.SetDesiredPosition(thePlayer.GetWorldPosition(), 0.0 );
+				moveData.pivotRotationController.SetDesiredHeading( thePlayer.GetHeading(), 2.8 );				
 				moveData.pivotDistanceController.SetDesiredDistance( 0.0 );	
 		
 		        mod_CamOffser_Height = 0;
