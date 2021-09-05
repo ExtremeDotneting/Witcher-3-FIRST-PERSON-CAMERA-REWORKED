@@ -1,3 +1,11 @@
+	function GetMyHorse():CNewNPC{	
+	    return GetWitcherPlayer().GetHorseWithInventory();
+	}
+	
+	function GetMyHorseComp():W3HorseComponent{	
+	    return GetMyHorse().GetHorseComponent();
+	}
+	
 	//FPS Mod main
 	function FPS_OnGameCameraPostTick( out moveData : SCameraMovementData, dt : float ) : bool
 	{
@@ -36,12 +44,9 @@
 		var camOffset 	: float;
 		var rotMultDest	: float;
 		var rotMult	: float;	
-	
+	    var horseComp : W3HorseComponent;
 		
 		Speed = thePlayer.GetMovingAgentComponent().GetRelativeMoveSpeed();
-
-		moveData.pivotRotationController.maxPitch = 89.0;
-		moveData.pivotRotationController.minPitch = -89.0;
 
 		//YURA MOD
 		Config = theGame.GetInGameConfigWrapper();
@@ -62,6 +67,9 @@
 				thePlayer.SetHideInGame(false);
 			}
 			else {
+				moveData.pivotRotationController.maxPitch = 89.0;
+				moveData.pivotRotationController.minPitch = -89.0;	
+			
 				theGame.GetGameCamera().ChangePivotRotationController('Exploration');
 				theGame.GetGameCamera().ChangePivotDistanceController( 'Default' );
 				theGame.GetGameCamera().ChangePivotPositionController( 'Default' );
@@ -92,8 +100,21 @@
 				else if(thePlayer.IsInCombat()){
 					mod_CamOffser_Width = FP_CamWidthOffset_InCombat() ;
 				}
-				else if(thePlayer.IsUsingHorse()){
+				else if(thePlayer.IsUsingHorse()){			
+                    horseComp = GetMyHorseComp();					
 					mod_CamOffser_Width = FP_CamWidthOffset_Horse() ;
+					
+					if(horseComp.inCanter){
+						mod_CamOffser_Width+=FP_CamWidthOffsetModifier_Gallop();
+						moveData.pivotRotationController.minPitch = -12.0;
+					}
+					if(horseComp.inGallop){
+						mod_CamOffser_Width+=FP_CamWidthOffsetModifier_Gallop()/3;
+						moveData.pivotRotationController.minPitch = -15.0;
+					}
+					else{
+						moveData.pivotRotationController.minPitch = -30.0;
+					}
 				}
 				else if(thePlayer.IsUsingBoat()){
 					mod_CamOffser_Width = FP_CamWidthOffset_Boat() ;
@@ -103,7 +124,7 @@
 				}
 				
 				// if(IsInInterior()){				
-				    // mod_InteriorModifier=StringToFloat(Config.GetVarValue('fps_mod_configs', 'Camera_offset_width_INTERIOR'));
+				    // mod_InteriorModifier=StringToFloat(Config.GetVarValue('fps_mod_configs', 'Offset_WDTH_INTERIOR'));
 					// mod_CamOffser_Width=mod_CamOffser_Width-mod_InteriorModifier;
 					// if(mod_CamOffser_Width<0)
 						// mod_CamOffser_Width=0;

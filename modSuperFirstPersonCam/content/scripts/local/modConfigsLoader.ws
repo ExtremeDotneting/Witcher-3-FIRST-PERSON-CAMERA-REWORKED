@@ -32,35 +32,49 @@ function FP_HideGeralt_FocusMode():bool{
 	return theGame.GetInGameConfigWrapper().GetVarValue('fps_mod_configs', 'Hide_geralt_in_witchersense');
 }
 
+//CAM OFFSETS MODIFIERS WIDTH
+function FP_CamWidthOffsetModifier_Gallop():float{
+	return StringToFloat(
+	    theGame.GetInGameConfigWrapper()
+	      .GetVarValue('fps_mod_configs', 'OffsetModifier_WDTH_HORSEGALLOP')
+	    );
+}
+function FP_CamWidthOffsetModifier_Sprint():float{
+	return StringToFloat(
+	    theGame.GetInGameConfigWrapper()
+	      .GetVarValue('fps_mod_configs', 'OffsetModifier_WDTH_SPRINT')
+	    );
+}
+
 //CAM OFFSETS WIDTH
 function FP_CamWidthOffset():float{
 	return StringToFloat(
 	    theGame.GetInGameConfigWrapper()
-	      .GetVarValue('fps_mod_configs', 'Camera_offset_width')
+	      .GetVarValue('fps_mod_configs', 'Offset_WDTH')
 	    );
 }
 function FP_CamWidthOffset_InCombat():float{
 	return StringToFloat(
 	    theGame.GetInGameConfigWrapper()
-	      .GetVarValue('fps_mod_configs', 'Camera_offset_width_INCOMBAT')
+	      .GetVarValue('fps_mod_configs', 'Offset_WDTH_INCOMBAT')
 	    );
 }
 function FP_CamWidthOffset_FocusMode():float{
 	return StringToFloat(
 	    theGame.GetInGameConfigWrapper()
-	      .GetVarValue('fps_mod_configs', 'Camera_offset_width_WITCHERSENSE')
+	      .GetVarValue('fps_mod_configs', 'Offset_WDTH_WITCHERSENSE')
 	    );
 }
 function FP_CamWidthOffset_Horse():float{
 	return StringToFloat(
 	    theGame.GetInGameConfigWrapper()
-	      .GetVarValue('fps_mod_configs', 'Camera_offset_width_HORSE')
+	      .GetVarValue('fps_mod_configs', 'Offset_WDTH_HORSE')
 	    );
 }
 function FP_CamWidthOffset_Boat():float{
 	return StringToFloat(
 	    theGame.GetInGameConfigWrapper()
-	      .GetVarValue('fps_mod_configs', 'Camera_offset_width_BOAT')
+	      .GetVarValue('fps_mod_configs', 'Offset_WDTH_BOAT')
 	    );
 }
 
@@ -74,13 +88,13 @@ function FP_CamWidthOffset_Boat():float{
 // function FP_CamHeightOffset_InCombat():float{
 	// return StringToFloat(
 	    // theGame.GetInGameConfigWrapper()
-	      // .GetVarValue('fps_mod_configs', 'Camera_offset_height_INCOMBAT')
+	      // .GetVarValue('fps_mod_configs', 'Offset_HGHT_INCOMBAT')
 	    // );
 // }
 function FP_CamHeightOffset_FocusMode():float{
 	return StringToFloat(
 	    theGame.GetInGameConfigWrapper()
-	      .GetVarValue('fps_mod_configs', 'Camera_offset_height_WITCHERSENSE')
+	      .GetVarValue('fps_mod_configs', 'Offset_HGHT_WITCHERSENSE')
 	    );
 }
 
