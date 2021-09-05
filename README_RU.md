@@ -23,8 +23,8 @@
 
 # Скриншоты
 
-![](screenshots/eploration1.png)
-![](screenshots/eploration2.png)
+![](screenshots/exploration1.png)
+![](screenshots/exploration2.png)
 ![](screenshots/horse.png)
 ![](screenshots/combat1.png)
 ![](screenshots/combat2.png)
