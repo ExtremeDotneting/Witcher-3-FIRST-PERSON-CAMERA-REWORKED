@@ -109,7 +109,7 @@
 						moveData.pivotRotationController.minPitch = -12.0;
 					}
 					if(horseComp.inGallop){
-						mod_CamOffser_Width+=FP_CamWidthOffsetModifier_Gallop()/3;
+						mod_CamOffser_Width+=FP_CamWidthOffsetModifier_Gallop()/2;
 						moveData.pivotRotationController.minPitch = -15.0;
 					}
 					else{
