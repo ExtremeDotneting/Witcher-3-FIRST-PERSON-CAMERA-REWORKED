@@ -2,6 +2,8 @@
 
 # FIRST PERSON CAMERA REWORKED - mod for playing The Witcher 3 from the first person
 
+[NEXUS](https://www.nexusmods.com/witcher3/mods/6025)
+
 The mod takes into account the errors of the mods [First Person Improved](https://www.nexusmods.com/witcher3/mods/4889/) and [modFirstPerson](https://www.nexusmods.com/witcher3/mods/1862).
 
 Makes control more convenient and fixes some problems, such as displaying swords, crossbows, camera shifts during different actions (for example, attack or sprint), use of the witcher's instinct.

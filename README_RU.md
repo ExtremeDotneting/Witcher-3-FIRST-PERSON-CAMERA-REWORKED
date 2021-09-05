@@ -2,6 +2,8 @@
 
 # FIRST PERSON CAMERA REWORKED - мод для игры в Ведьмак 3 от первого лица
 
+[NEXUS](https://www.nexusmods.com/witcher3/mods/6025)
+
 Мод учитывает ошибки модов [First Person Improved](https://www.nexusmods.com/witcher3/mods/4889/) и [modFirstPerson](https://www.nexusmods.com/witcher3/mods/1862). 
 
 Делает управление более удобным и исправляет некоторые проблемы, такие как: отображение мечей, арбалета, сдвиги камеры при разных действиях (например атака или спринт), использование ведьмачьего чутья.
