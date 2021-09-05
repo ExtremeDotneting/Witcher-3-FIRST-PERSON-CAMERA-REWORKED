@@ -6,6 +6,8 @@
 !copyOf.gitattributes
 !README.md
 !README_RU.md
+!README_RU.md
+!add_to_inputsettings.txt
 
 # Except mods and scrrenshots
 !/mods/

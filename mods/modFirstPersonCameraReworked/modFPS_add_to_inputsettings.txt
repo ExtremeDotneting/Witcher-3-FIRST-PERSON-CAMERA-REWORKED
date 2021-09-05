@@ -1,5 +1,0 @@
-[Exploration]
-IK_P=(Action=ToggleFpsMod)
-
-[Combat]
-IK_P=(Action=ToggleFpsMod)

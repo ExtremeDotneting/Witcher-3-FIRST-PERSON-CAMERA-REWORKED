@@ -6,7 +6,7 @@
 
 # Инструкция по установке
 1. Распакуйте архив с модом в корень папки с игрой.
-2. Добавьте в файл `C:\Users\<your user name>\Documents\The Witcher 3\input.settings`.
+2. Добавьте в файл `C:\Users\<your user name>\Documents\The Witcher 3\input.settings` строки из `add_to_inputsettings.txt`, каждую вначале своей категории.
 3. Используйте [Script Merger](https://www.nexusmods.com/witcher3/mods/484) если у вас установлены другие моды.
 4. Запустите в игру. Зайдите в настройки модов `Настройки -> Mods -> Игровой процесс` и нажмите вверху `##PRESET_VALUE_DEFAULT`.
 
