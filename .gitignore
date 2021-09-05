@@ -1,0 +1,36 @@
+# Ignore all
+/*
+
+# Except this
+!.gitignore
+!copyOf.gitattributes
+!README.md
+!README_RU.md
+
+# Except mods
+!/mods/
+
+# Ignore this folder
+mods/modOpenMenuDuringDialoguesAndCutscenesGoty
+
+# Except modFPSConfig.xml
+!/bin/
+/bin/*
+!/bin/config
+/bin/config/*
+!/bin/config/r4game
+/bin/config/r4game/*
+!/bin/config/r4game/user_config_matrix
+/bin/config/r4game/user_config_matrix/*
+!/bin/config/r4game/user_config_matrix/pc
+/bin/config/r4game/user_config_matrix/pc/*
+!/bin/config/r4game/user_config_matrix/pc/modFPSConfig.xml
+
+# Ignore file
+mods/modSuperFirstPersonCam/witcher3_link.exe.lnk
+
+# Ignore dlc except dlcInvisibleweapons and fpcamfix
+!/dlc/
+/dlc/*
+!dlc/dlcInvisibleweapons
+!dlc/fpcamfix
