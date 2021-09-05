@@ -89,7 +89,7 @@
 				
 
 				moveData.pivotPositionController.SetDesiredPosition(thePlayer.GetWorldPosition(), 0.0 );
-				moveData.pivotRotationController.SetDesiredHeading( thePlayer.GetHeading(), 2.8 );				
+				//moveData.pivotRotationController.SetDesiredHeading( thePlayer.GetHeading(), 2.8 );				
 				moveData.pivotDistanceController.SetDesiredDistance( 0.0 );	
 		
 		        mod_CamOffser_Height = 0;
@@ -123,13 +123,6 @@
 					mod_CamOffser_Width = FP_CamWidthOffset() ;
 				}
 				
-				// if(IsInInterior()){				
-				    // mod_InteriorModifier=StringToFloat(Config.GetVarValue('fps_mod_configs', 'Offset_WDTH_INTERIOR'));
-					// mod_CamOffser_Width=mod_CamOffser_Width-mod_InteriorModifier;
-					// if(mod_CamOffser_Width<0)
-						// mod_CamOffser_Width=0;
-				// }
-				
 				//first hight, second width
 				DampVectorSpring( moveData.cameraLocalSpaceOffset, moveData.cameraLocalSpaceOffsetVel, Vector(0.0, mod_CamOffser_Width, mod_CamOffser_Height), 0.2, dt);
 				return false;
@@ -139,10 +132,6 @@
 			thePlayer.SetHideInGame(false);
 		}
 		
-		// if( substateManager.UpdateCameraIfNeeded( moveData, dt ) )
-		// {
-			// return true;
-		// }	
 		return true;
 	}
 	

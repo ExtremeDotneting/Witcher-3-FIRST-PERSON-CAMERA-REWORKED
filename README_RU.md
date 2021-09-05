@@ -28,3 +28,5 @@
 ![](screenshots/horse.png)
 ![](screenshots/combat1.png)
 ![](screenshots/combat2.png)
+![](screenshots/exploration3.png)
+![](screenshots/exploration4.png)

@@ -2,16 +2,16 @@
 function FP_IsEnabled():bool{
 	if(!theGame.GetInGameConfigWrapper().GetVarValue('fps_mod_configs', 'Enable'))
 		return false;
-	if (
-	    (!FP_IsEnabled_Swiming() && thePlayer.IsSwimming())
-		|| (!FP_IsEnabled_DialogOrCutscene()  && theGame.IsDialogOrCutscenePlaying() )
-		|| (!FP_IsEnabled_NonGameplayCutscene() && thePlayer.IsInNonGameplayCutscene())
-		|| (!FP_IsEnabled_NonGameplayScene() && theGame.IsCurrentlyPlayingNonGameplayScene())
-		|| (!FP_IsEnabled_UsingBoat()  && thePlayer.IsUsingBoat())
-		|| (!FP_IsEnabled_Combat() && thePlayer.IsInCombat())
-		|| (!FP_IsEnabled_UsingHorse() && (thePlayer.IsUsingHorse()))
-		)
-		return false;
+	 if (
+	     (!FP_IsEnabled_Swiming() && thePlayer.IsSwimming())
+		 //|| (!FP_IsEnabled_DialogOrCutscene()  && theGame.IsDialogOrCutscenePlaying() )
+		 //|| (!FP_IsEnabled_NonGameplayCutscene() && thePlayer.IsInNonGameplayCutscene())
+		 //|| (!FP_IsEnabled_NonGameplayScene() && theGame.IsCurrentlyPlayingNonGameplayScene())
+		 //|| (!FP_IsEnabled_UsingBoat()  && thePlayer.IsUsingBoat())
+		 || (!FP_IsEnabled_Combat() && thePlayer.IsInCombat())
+		 //|| (!FP_IsEnabled_UsingHorse() && (thePlayer.IsUsingHorse()))
+		 )
+		 return false;
 	return true;	           
 }
 function FP_IsEnabled_Combat():bool{
