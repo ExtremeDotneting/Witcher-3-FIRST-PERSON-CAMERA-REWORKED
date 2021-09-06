@@ -7,10 +7,19 @@
 !README.md
 !README_RU.md
 !README_RU.md
-!add_to_inputsettings.txt
+!add_to_inputsettings.settings
+!add_to_inputsettings.xml
 
 # Except mods and scrrenshots
 !/mods/
+/mods/*
+!/mods/modinvisibleCrossbow/
+!/mods/modInvisibleweapons/
+!/mods/modInvisibleweapons2_patch_FirstPersonCameraReworked/
+!/mods/modFirstPersonCameraReworked/
+!my_backups
+/my_backups/*
+!/my_backups/GervantFPPatch.exe
 !/screenshots/
 
 # Ignore this folder

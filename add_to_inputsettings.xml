@@ -1,0 +1,4 @@
+<!-- Add this to      <VisibleVars> -->	      
+		    <!-- FP MOD -->
+			<Var builder="Input" id="toggleFpsMod"	displayName="ToggleFpsModName"	displayType="INPUTPC" actions="ToggleFpsMod"/>
+			<!-- FP MOD -->

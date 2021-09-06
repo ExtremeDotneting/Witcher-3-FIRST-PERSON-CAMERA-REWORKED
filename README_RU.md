@@ -10,12 +10,20 @@
 
 [YouTube Demo](https://www.youtube.com/watch?v=YuHIzRj-BTU)
 
+# Различия между FPCR и Gervant First Person
+
+[Gervant First Person](https://www.nexusmods.com/witcher3/mods/5706?tab=files) - мод написанный другим разработчиком примерно в то же время что и этот мод.
+
+В отличии от FPCR мод GFP более проработан для геймплея от первого лица, из-за чего были упрощены некоторые анимации. Используйте FPCR если хотите отзывчивость управление более близкую к ванильной версии или GFP для более полного экспириенса игры от первого лица.
+
 # Инструкция по установке
 1. Распакуйте архив с модом в корень папки с игрой.
-2. Добавьте в файл `C:\Users\<your user name>\Documents\The Witcher 3\input.settings` строки из `add_to_inputsettings.txt`, каждую вначале своей категории.
-3. Используйте [Script Merger](https://www.nexusmods.com/witcher3/mods/484) если у вас установлены другие моды.
-4. Запустите в игру. Зайдите в настройки модов `Настройки -> Mods -> Игровой процесс` и нажмите вверху `##PRESET_VALUE_DEFAULT`.
-5. В настройках так же можно включить вид от первого лица в диалогах, но работает с багами. То же самое с лодками.
+2. Добавьте в файл `C:\Users\<your user name>\Documents\The Witcher 3\input.settings` строки из `add_to_inputsettings.settings`, каждую вначале своей категории.
+3. Добавьте в файл `\The Witcher 3 Wild Hunt\bin\config\r4game\user_config_matrix\pc\input.xml` строки из `add_to_inputsettings.xml`.
+4. Используйте [Script Merger](https://www.nexusmods.com/witcher3/mods/484) если у вас установлены другие моды.
+5. Запустите в игру. Зайдите в настройки модов `Настройки -> Mods -> Игровой процесс` и нажмите вверху `##PRESET_VALUE_DEFAULT`.
+6. В настройках так же можно включить вид от первого лица в диалогах, но работает с багами. То же самое с лодками.
+7. Рекомендую установить патч из мода [Gervant First Person](https://www.nexusmods.com/witcher3/mods/5706?tab=files) чтоб не исчезали предметы вблизи камеры (меч, Плотва, NPC).
 
 # Использование
 
@@ -27,6 +35,7 @@
 - [modFirstPersonHorseCamera](https://www.nexusmods.com/witcher3/mods/436/) - код отсюда частично использован для езды на лошади.
 - [modFirstPerson](https://www.nexusmods.com/witcher3/mods/1862) - используется только в диалогах.
 - [First Person Improved](https://www.nexusmods.com/witcher3/mods/4889/) - код этого мода помог мне разобраться.
+- [Gervant First Person](https://www.nexusmods.com/witcher3/mods/5706?tab=files) - используется патч видимости объектов отсюда.
 
 # Скриншоты
 
