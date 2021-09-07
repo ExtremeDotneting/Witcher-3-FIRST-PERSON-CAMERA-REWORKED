@@ -32,6 +32,36 @@
 				<Entry varId="Enable_in_Swiming" value="1" />
 				
 			</Preset>
+			<Preset id="1" displayName="GFP">		
+	            <Entry varId="Enable" value="1" />			
+				<Entry varId="Hide_geralt" value="1" />
+				<Entry varId="Hide_geralt_in_witchersense" value="0" />
+				
+				<Entry varId="Camera_Z_modifier" value="1.65" />
+				<Entry varId="Camera_Z_modifier_HORSE" value="2.80" />		
+				
+				<Entry varId="Offset_WDTH" value="3.35" />		
+				<Entry varId="Offset_WDTH_INCOMBAT" value="4.05" />				
+				<Entry varId="Offset_WDTH_WITCHERSENSE" value="1.0" />
+				<Entry varId="Offset_WDTH_HORSE" value="4.45" />				
+				<Entry varId="Offset_WDTH_BOAT" value="3.25" />
+				
+				<Entry varId="OffsetModifier_WDTH_SPRINT" value="0.0" />
+				<Entry varId="OffsetModifier_WDTH_HORSEGALLOP" value="1.15" />
+				
+				<!-- <Entry varId="Offset_HGHT" value="0.0" /> -->
+				<!-- <Entry varId="Offset_HGHT_INCOMBAT" value="0.0" /> -->
+				<Entry varId="Offset_HGHT_WITCHERSENSE" value="0.40" />
+							
+				<Entry varId="Enable_in_combat" value="1" />
+				<Entry varId="Enable_in_DialogOrCutscene" value="0" />
+				<Entry varId="Enable_in_NonGameplayScene" value="1" />
+				<Entry varId="Enable_in_NonGameplayCutscene" value="1" />
+				<Entry varId="Enable_in_UsingBoat" value="0" />				
+				<Entry varId="Enable_in_UsingHorse" value="1" />
+				<Entry varId="Enable_in_Swiming" value="1" />
+				
+			</Preset>
 		</PresetsArray>
 		<VisibleVars>
 			<Var id="Enable" displayName="FPS_MODE_Enable" displayType="TOGGLE"/>		
