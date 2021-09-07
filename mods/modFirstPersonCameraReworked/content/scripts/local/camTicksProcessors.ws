@@ -67,6 +67,8 @@
 				thePlayer.SetHideInGame(false);
 			}
 			else {
+				FP_CheckWeaponsVisibility();
+				
 				moveData.pivotRotationController.maxPitch = 89.0;
 				moveData.pivotRotationController.minPitch = -89.0;	
 			
@@ -133,5 +135,46 @@
 		}
 		
 		return true;
+	}
+	
+	
+	function FP_CheckWeaponsVisibility()
+	{
+		var steelid,silverid									    : SItemUniqueId;
+		var steelcomp, silvercomp  									: CDrawableComponent;
+	    var swordsteel, swordsilver									: CEntity;
+		
+	    thePlayer.GetInventory().GetItemEquippedOnSlot(EES_SteelSword, steelid);
+	    swordsteel = thePlayer.GetInventory().GetItemEntityUnsafe(steelid);
+	    steelcomp = (CDrawableComponent)((thePlayer.GetInventory().GetItemEntityUnsafe(steelid)).GetMeshComponent());
+	
+	    thePlayer.GetInventory().GetItemEquippedOnSlot(EES_SilverSword, silverid);
+	    swordsilver = thePlayer.GetInventory().GetItemEntityUnsafe(silverid);
+	    silvercomp = (CDrawableComponent)((thePlayer.GetInventory().GetItemEntityUnsafe(silverid)).GetMeshComponent());
+	
+	    if(theGame.IsDialogOrCutscenePlaying() || theGame.IsCurrentlyPlayingNonGameplayScene())
+		{
+			silvercomp.SetVisible(true);
+			steelcomp.SetVisible(true);
+			thePlayer.GetWeaponHolster().OnWeaponDrawReady();
+			thePlayer.GetWeaponHolster().OnEquippedMeleeWeapon( PW_Steel );
+			thePlayer.GetWeaponHolster().OnEquippedMeleeWeapon( PW_Silver );
+			thePlayer.GetWeaponHolster().OnEquippedMeleeWeapon( PW_Fists );
+		}
+	    else if( thePlayer.GetInventory().IsItemHeld(steelid))
+	    {	
+			silvercomp.SetVisible(false);			
+			steelcomp.SetVisible(true);
+	    }
+	    else if( thePlayer.GetInventory().IsItemHeld(silverid))
+	    {	
+	        silvercomp.SetVisible(true);
+			steelcomp.SetVisible(false);	
+	    }
+		else
+		{
+			silvercomp.SetVisible(false);
+			steelcomp.SetVisible(false);
+		}
 	}
 	
