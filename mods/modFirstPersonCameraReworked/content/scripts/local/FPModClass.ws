@@ -1,5 +1,14 @@
-	//FPS Mod main
-	function FP_OnGameCameraPostTick( out moveData : SCameraMovementData, dt : float ) : bool
+class FPModClass
+{	
+    var vsControl : VisibilityControlClass;
+	public var boltProjectile : CDrawableComponent;
+	
+	public function Init(){
+		vsControl= new VisibilityControlClass in this;
+	}
+	
+    //FPS Mod main
+	public function OnGameCameraPostTick( out moveData : SCameraMovementData, dt : float ) : bool
 	{
 		var ent : CEntity;
 		var playerPos : Vector;
@@ -18,95 +27,58 @@
 	}
 	
 	
-	function FP_PreGameCameraTick( out moveData : SCameraMovementData, dt : float )
+	public function PreGameCameraTick( out moveData : SCameraMovementData, dt : float )
 	{
+		var isGeraltVisible: bool;
 		var steelid,silverid, xid, bid : SItemUniqueId;
 		var steelcomp, silvercomp, boltMesh  : CDrawableComponent;
 	    var swordsteel, swordsilver, xbow, bolt, bolt2 : CEntity;
-		var modMastBeDisabled : bool;
-		var isGeraltVisible: bool;
+	    var inv : CInventoryComponent;	
 
-		modMastBeDisabled =	!FP_IsEnabled()
+		isGeraltVisible =	!FP_IsEnabled()
 		        || (!FP_IsEnabled_Swiming() && thePlayer.IsSwimming())
 				|| (!FP_IsEnabled_DialogOrCutscene()  && theGame.IsDialogOrCutscenePlaying() )
 				|| (!FP_IsEnabled_NonGameplayCutscene() && thePlayer.IsInNonGameplayCutscene())
 				|| (!FP_IsEnabled_NonGameplayScene() && theGame.IsCurrentlyPlayingNonGameplayScene())
 				|| (!FP_IsEnabled_UsingBoat()  && thePlayer.IsUsingBoat())
 				|| (!FP_IsEnabled_Combat() && thePlayer.IsInCombat())
-				|| (!FP_IsEnabled_UsingHorse() && (thePlayer.IsUsingHorse()));
-		if(modMastBeDisabled)				
-		{			
-			isGeraltVisible=true;
-		}
-		else{
-			if(theGame.IsFocusModeActive()){
-		        isGeraltVisible=!(FP_HideGeralt() && FP_HideGeralt_FocusMode());
-			}
-			else{
-				isGeraltVisible=!FP_HideGeralt();
-			}			
-		}
+				|| (!FP_IsEnabled_UsingHorse() && thePlayer.IsUsingHorse())
+				|| (!FP_HideGeralt_FocusMode() && theGame.IsFocusModeActive());
+				
+		if(isGeraltVisible)
+		{
+            vsControl.ShowAll();
+			return;
+		}	
 					
-	    thePlayer.GetInventory().GetItemEquippedOnSlot(EES_SteelSword, steelid);
-	    swordsteel = thePlayer.GetInventory().GetItemEntityUnsafe(steelid);
-	    steelcomp = (CDrawableComponent)((thePlayer.GetInventory().GetItemEntityUnsafe(steelid)).GetMeshComponent());
-	
-	    thePlayer.GetInventory().GetItemEquippedOnSlot(EES_SilverSword, silverid);
-	    swordsilver = thePlayer.GetInventory().GetItemEntityUnsafe(silverid);
-	    silvercomp = (CDrawableComponent)((thePlayer.GetInventory().GetItemEntityUnsafe(silverid)).GetMeshComponent());
+		inv=thePlayer.GetInventory();	 
+		inv.GetItemEquippedOnSlot(EES_SteelSword, steelid);	
+	    inv.GetItemEquippedOnSlot(EES_SilverSword, silverid);
+		inv.GetItemEquippedOnSlot(EES_RangedWeapon, xid);
+	    inv.GetItemEquippedOnSlot(EES_Bolt, bid);
 		
-		thePlayer.GetInventory().GetItemEquippedOnSlot(EES_RangedWeapon, xid);
-	    thePlayer.GetInventory().GetItemEquippedOnSlot(EES_Bolt, bid);
-	    xbow = thePlayer.GetInventory().GetItemEntityUnsafe(xid);
-		bolt = thePlayer.GetInventory().GetItemEntityUnsafe(bid);
-		bolt2 = thePlayer.GetInventory().GetItemEntityUnsafe(thePlayer.GetInventory().GetItemFromSlot( 'r_weapon' ) );
-		//boltMesh = (CDrawableComponent)(thePlayer.GetInventory().GetItemEntityUnsafe(bid).GetMeshComponent());
-	
-	    if(isGeraltVisible || theGame.IsDialogOrCutscenePlaying() || theGame.IsCurrentlyPlayingNonGameplayScene())
+        if( inv.IsItemHeld(xid) )
 		{
-			thePlayer.SetHideInGame(false);
-			SetObjHideInGame(xbow,false);
-			SetObjHideInGame(bolt,false);
-			SetObjHideInGame(bolt2,false);
-			SetObjHideInGame(swordsilver,false);
-			SetObjHideInGame(swordsteel,false);
-			thePlayer.GetWeaponHolster().OnWeaponDrawReady();
-			thePlayer.GetWeaponHolster().OnEquippedMeleeWeapon( PW_Steel );
-			thePlayer.GetWeaponHolster().OnEquippedMeleeWeapon( PW_Silver );
-			thePlayer.GetWeaponHolster().OnEquippedMeleeWeapon( PW_Fists );
-		}	
-		else{
-			thePlayer.SetHideInGame(true);
-			SetObjHideInGame(xbow,true);
-			SetObjHideInGame(bolt,true);
-			SetObjHideInGame(bolt2,true);
-			SetObjHideInGame(swordsilver,true);
-			SetObjHideInGame(swordsteel,true);
+			vsControl.HideAllExceptXbow();
 		}
-
-	    
-		if( thePlayer.GetInventory().IsItemHeld(steelid))
+		else if (thePlayer.GetCurrentMeleeWeaponType() == PW_Steel)
+		//else if(inv.IsItemHeld(steelid))
 	    {		
-			SetObjHideInGame(swordsteel,false);
-			thePlayer.GetWeaponHolster().OnWeaponDrawReady();
-			thePlayer.GetWeaponHolster().OnEquippedMeleeWeapon( PW_Steel );
+			vsControl.HideAllExceptSteel();
 	    }
-	    if( thePlayer.GetInventory().IsItemHeld(silverid))
+		else if (thePlayer.GetCurrentMeleeWeaponType() == PW_Silver)
+	    //else if(inv.IsItemHeld(silverid))
 	    {	
-			SetObjHideInGame(swordsilver,false);
-			thePlayer.GetWeaponHolster().OnWeaponDrawReady();
-			thePlayer.GetWeaponHolster().OnEquippedMeleeWeapon( PW_Silver );
-	    }
-		if( thePlayer.GetInventory().IsItemHeld(xid) )
+			vsControl.HideAllExceptSilver();
+	    }		
+		else
 		{
-			SetObjHideInGame(xbow,false);
-			SetObjHideInGame(bolt,false);
-			SetObjHideInGame(bolt2,false);
-		}	
+			vsControl.HideAll();
+		}
 	}
 	
 	//FPS Mod main
-    function FP_OnGameCameraTick( out moveData : SCameraMovementData, dt : float) : bool
+    public function OnGameCameraTick( out moveData : SCameraMovementData, dt : float) : bool
 	{
 		var targetRotation	: EulerAngles;
 		var dist : float;
@@ -200,12 +172,17 @@
 		return true;
 	}
 	
-	function SetObjHideInGame(ent : CEntity, hideInGame : bool){
-		ent.SetHideInGame(hideInGame);
-		ent.SetHideInGame(!hideInGame);
-		ent.SetHideInGame(hideInGame);
-	}
+	public function SetBoltProjectile(comp : CDrawableComponent)
+	{
+		boltProjectile=comp;
+	}	
 	
+	public function SetBoltProjectileVisibility(value : bool)
+	{
+		if(!boltProjectile)
+			return;
+		boltProjectile.SetVisible(value);
+	}	
 	
 	function GetMyHorse():CNewNPC{	
 	    return GetWitcherPlayer().GetHorseWithInventory();
@@ -214,3 +191,4 @@
 	function GetMyHorseComp():W3HorseComponent{	
 	    return GetMyHorse().GetHorseComponent();
 	}	
+}
