@@ -8,7 +8,8 @@ The mod takes into account the errors of the mods [First Person Improved](https:
 
 Makes control more convenient and fixes some problems, such as displaying swords, crossbows, camera shifts during different actions (for example, attack or sprint), use of the witcher's instinct.
 
-[YouTube Demo](https://www.youtube.com/watch?v=YuHIzRj-BTU)
+[YouTube Demo 1](https://youtu.be/pR7JSyFB40U)
+[YouTube Demo 2](https://www.youtube.com/watch?v=YuHIzRj-BTU)
 
 # Differences between FPCR and Gervant First Person
 

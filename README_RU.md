@@ -8,7 +8,8 @@
 
 Делает управление более удобным и исправляет некоторые проблемы, такие как: отображение мечей, арбалета, сдвиги камеры при разных действиях (например атака или спринт), использование ведьмачьего чутья.
 
-[YouTube Demo](https://www.youtube.com/watch?v=YuHIzRj-BTU)
+[YouTube Demo 1](https://youtu.be/pR7JSyFB40U)
+[YouTube Demo 2](https://www.youtube.com/watch?v=YuHIzRj-BTU)
 
 # Различия между FPCR и Gervant First Person
 
