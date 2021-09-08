@@ -1,13 +1,5 @@
-	function GetMyHorse():CNewNPC{	
-	    return GetWitcherPlayer().GetHorseWithInventory();
-	}
-	
-	function GetMyHorseComp():W3HorseComponent{	
-	    return GetMyHorse().GetHorseComponent();
-	}
-	
 	//FPS Mod main
-	function FPS_OnGameCameraPostTick( out moveData : SCameraMovementData, dt : float ) : bool
+	function FP_OnGameCameraPostTick( out moveData : SCameraMovementData, dt : float ) : bool
 	{
 		var ent : CEntity;
 		var playerPos : Vector;
@@ -25,8 +17,96 @@
 		return true;
 	}
 	
+	
+	function FP_PreGameCameraTick( out moveData : SCameraMovementData, dt : float )
+	{
+		var steelid,silverid, xid, bid : SItemUniqueId;
+		var steelcomp, silvercomp, boltMesh  : CDrawableComponent;
+	    var swordsteel, swordsilver, xbow, bolt, bolt2 : CEntity;
+		var modMastBeDisabled : bool;
+		var isGeraltVisible: bool;
+
+		modMastBeDisabled =	!FP_IsEnabled()
+		        || (!FP_IsEnabled_Swiming() && thePlayer.IsSwimming())
+				|| (!FP_IsEnabled_DialogOrCutscene()  && theGame.IsDialogOrCutscenePlaying() )
+				|| (!FP_IsEnabled_NonGameplayCutscene() && thePlayer.IsInNonGameplayCutscene())
+				|| (!FP_IsEnabled_NonGameplayScene() && theGame.IsCurrentlyPlayingNonGameplayScene())
+				|| (!FP_IsEnabled_UsingBoat()  && thePlayer.IsUsingBoat())
+				|| (!FP_IsEnabled_Combat() && thePlayer.IsInCombat())
+				|| (!FP_IsEnabled_UsingHorse() && (thePlayer.IsUsingHorse()));
+		if(modMastBeDisabled)				
+		{			
+			isGeraltVisible=true;
+		}
+		else{
+			if(theGame.IsFocusModeActive()){
+		        isGeraltVisible=!(FP_HideGeralt() && FP_HideGeralt_FocusMode());
+			}
+			else{
+				isGeraltVisible=!FP_HideGeralt();
+			}			
+		}
+					
+	    thePlayer.GetInventory().GetItemEquippedOnSlot(EES_SteelSword, steelid);
+	    swordsteel = thePlayer.GetInventory().GetItemEntityUnsafe(steelid);
+	    steelcomp = (CDrawableComponent)((thePlayer.GetInventory().GetItemEntityUnsafe(steelid)).GetMeshComponent());
+	
+	    thePlayer.GetInventory().GetItemEquippedOnSlot(EES_SilverSword, silverid);
+	    swordsilver = thePlayer.GetInventory().GetItemEntityUnsafe(silverid);
+	    silvercomp = (CDrawableComponent)((thePlayer.GetInventory().GetItemEntityUnsafe(silverid)).GetMeshComponent());
+		
+		thePlayer.GetInventory().GetItemEquippedOnSlot(EES_RangedWeapon, xid);
+	    thePlayer.GetInventory().GetItemEquippedOnSlot(EES_Bolt, bid);
+	    xbow = thePlayer.GetInventory().GetItemEntityUnsafe(xid);
+		bolt = thePlayer.GetInventory().GetItemEntityUnsafe(bid);
+		bolt2 = thePlayer.GetInventory().GetItemEntityUnsafe(thePlayer.GetInventory().GetItemFromSlot( 'r_weapon' ) );
+		//boltMesh = (CDrawableComponent)(thePlayer.GetInventory().GetItemEntityUnsafe(bid).GetMeshComponent());
+	
+	    if(isGeraltVisible || theGame.IsDialogOrCutscenePlaying() || theGame.IsCurrentlyPlayingNonGameplayScene())
+		{
+			thePlayer.SetHideInGame(false);
+			SetObjHideInGame(xbow,false);
+			SetObjHideInGame(bolt,false);
+			SetObjHideInGame(bolt2,false);
+			SetObjHideInGame(swordsilver,false);
+			SetObjHideInGame(swordsteel,false);
+			thePlayer.GetWeaponHolster().OnWeaponDrawReady();
+			thePlayer.GetWeaponHolster().OnEquippedMeleeWeapon( PW_Steel );
+			thePlayer.GetWeaponHolster().OnEquippedMeleeWeapon( PW_Silver );
+			thePlayer.GetWeaponHolster().OnEquippedMeleeWeapon( PW_Fists );
+		}	
+		else{
+			thePlayer.SetHideInGame(true);
+			SetObjHideInGame(xbow,true);
+			SetObjHideInGame(bolt,true);
+			SetObjHideInGame(bolt2,true);
+			SetObjHideInGame(swordsilver,true);
+			SetObjHideInGame(swordsteel,true);
+		}
+
+	    
+		if( thePlayer.GetInventory().IsItemHeld(steelid))
+	    {		
+			SetObjHideInGame(swordsteel,false);
+			thePlayer.GetWeaponHolster().OnWeaponDrawReady();
+			thePlayer.GetWeaponHolster().OnEquippedMeleeWeapon( PW_Steel );
+	    }
+	    if( thePlayer.GetInventory().IsItemHeld(silverid))
+	    {	
+			SetObjHideInGame(swordsilver,false);
+			thePlayer.GetWeaponHolster().OnWeaponDrawReady();
+			thePlayer.GetWeaponHolster().OnEquippedMeleeWeapon( PW_Silver );
+	    }
+		if( thePlayer.GetInventory().IsItemHeld(xid) )
+		{
+			SetObjHideInGame(xbow,false);
+			SetObjHideInGame(bolt,false);
+			SetObjHideInGame(bolt2,false);
+		}	
+	}
+	
 	//FPS Mod main
-    function FPS_OnGameCameraTick( out moveData : SCameraMovementData, dt : float) : bool
+    function FP_OnGameCameraTick( out moveData : SCameraMovementData, dt : float) : bool
 	{
 		var targetRotation	: EulerAngles;
 		var dist : float;
@@ -61,14 +141,10 @@
 				|| (!FP_IsEnabled_UsingBoat()  && thePlayer.IsUsingBoat())
 				|| (!FP_IsEnabled_Combat() && thePlayer.IsInCombat())
 				|| (!FP_IsEnabled_UsingHorse() && (thePlayer.IsUsingHorse()))
-				)
-				
+				)				
 			{
-				thePlayer.SetHideInGame(false);
 			}
-			else {
-				FP_CheckWeaponsVisibility();
-				
+			else {			
 				moveData.pivotRotationController.maxPitch = 89.0;
 				moveData.pivotRotationController.minPitch = -89.0;	
 			
@@ -79,16 +155,6 @@
 				moveData.pivotRotationController = theGame.GetGameCamera().GetActivePivotRotationController();
 				moveData.pivotDistanceController = theGame.GetGameCamera().GetActivePivotDistanceController();
 				moveData.pivotPositionController = theGame.GetGameCamera().GetActivePivotPositionController();
-
-                if(theGame.IsFocusModeActive()){
-				   thePlayer.SetHideInGame(
-				      FP_HideGeralt() && FP_HideGeralt_FocusMode()
-					  );
-				}
-				else{
-				   thePlayer.SetHideInGame(FP_HideGeralt());
-				}
-				
 
 				moveData.pivotPositionController.SetDesiredPosition(thePlayer.GetWorldPosition(), 0.0 );
 				//moveData.pivotRotationController.SetDesiredHeading( thePlayer.GetHeading(), 2.8 );				
@@ -130,51 +196,21 @@
 				return false;
 			}		
 		}
-		else{
-			thePlayer.SetHideInGame(false);
-		}
 		
 		return true;
 	}
 	
-	
-	function FP_CheckWeaponsVisibility()
-	{
-		var steelid,silverid									    : SItemUniqueId;
-		var steelcomp, silvercomp  									: CDrawableComponent;
-	    var swordsteel, swordsilver									: CEntity;
-		
-	    thePlayer.GetInventory().GetItemEquippedOnSlot(EES_SteelSword, steelid);
-	    swordsteel = thePlayer.GetInventory().GetItemEntityUnsafe(steelid);
-	    steelcomp = (CDrawableComponent)((thePlayer.GetInventory().GetItemEntityUnsafe(steelid)).GetMeshComponent());
-	
-	    thePlayer.GetInventory().GetItemEquippedOnSlot(EES_SilverSword, silverid);
-	    swordsilver = thePlayer.GetInventory().GetItemEntityUnsafe(silverid);
-	    silvercomp = (CDrawableComponent)((thePlayer.GetInventory().GetItemEntityUnsafe(silverid)).GetMeshComponent());
-	
-	    if(theGame.IsDialogOrCutscenePlaying() || theGame.IsCurrentlyPlayingNonGameplayScene())
-		{
-			silvercomp.SetVisible(true);
-			steelcomp.SetVisible(true);
-			thePlayer.GetWeaponHolster().OnWeaponDrawReady();
-			thePlayer.GetWeaponHolster().OnEquippedMeleeWeapon( PW_Steel );
-			thePlayer.GetWeaponHolster().OnEquippedMeleeWeapon( PW_Silver );
-			thePlayer.GetWeaponHolster().OnEquippedMeleeWeapon( PW_Fists );
-		}
-	    else if( thePlayer.GetInventory().IsItemHeld(steelid))
-	    {	
-			silvercomp.SetVisible(false);			
-			steelcomp.SetVisible(true);
-	    }
-	    else if( thePlayer.GetInventory().IsItemHeld(silverid))
-	    {	
-	        silvercomp.SetVisible(true);
-			steelcomp.SetVisible(false);	
-	    }
-		else
-		{
-			silvercomp.SetVisible(false);
-			steelcomp.SetVisible(false);
-		}
+	function SetObjHideInGame(ent : CEntity, hideInGame : bool){
+		ent.SetHideInGame(hideInGame);
+		ent.SetHideInGame(!hideInGame);
+		ent.SetHideInGame(hideInGame);
 	}
 	
+	
+	function GetMyHorse():CNewNPC{	
+	    return GetWitcherPlayer().GetHorseWithInventory();
+	}
+	
+	function GetMyHorseComp():W3HorseComponent{	
+	    return GetMyHorse().GetHorseComponent();
+	}	
