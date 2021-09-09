@@ -26,12 +26,15 @@ class VisibilityControlClass
 		SetHideInGame(xbow,false);
 		SetHideInGame(swordsilver,false);
 		SetHideInGame(swordsteel,false);		
-		myMods().FP().SetBoltProjectileVisibility(true);
+		myMods().FP().SetBoltProjectileVisibility(true);	
 		
-		//thePlayer.GetWeaponHolster().OnWeaponDrawReady();
-		//thePlayer.GetWeaponHolster().OnEquippedMeleeWeapon( PW_Steel );
-		//thePlayer.GetWeaponHolster().OnEquippedMeleeWeapon( PW_Silver );
-		//thePlayer.GetWeaponHolster().OnEquippedMeleeWeapon( PW_Fists );
+		// thePlayer.GetWeaponHolster().OnWeaponDrawReady();
+		// thePlayer.GetWeaponHolster().OnEquippedMeleeWeapon( PW_Steel );
+		// thePlayer.GetWeaponHolster().OnEquippedMeleeWeapon( PW_Silver );
+		// thePlayer.GetWeaponHolster().OnEquippedMeleeWeapon( PW_Fists );
+		
+		// SetPlayerHideInGame(true);
+		// SetPlayerHideInGame(false);
 	}
 	
 	
@@ -180,12 +183,12 @@ class VisibilityControlClass
 		var itemL : W3UsableItem;
 		
 		thePlayer.SetHideInGame(hideInGame);		
-		itemL = thePlayer.GetCurrentlyUsedItemL ();
-		if ( itemL )
-		{
-			itemL.SetVisibility ( true );
-			itemL.OnUsed( thePlayer );
-		}
+		// itemL = thePlayer.GetCurrentlyUsedItemL ();
+		// if ( itemL )
+		// {
+			// itemL.SetVisibility ( true );
+			// itemL.OnUsed( thePlayer );
+		// }
 	}
 	
 	
